@@ -9,10 +9,7 @@
  * @link     https://github.com/agutoli/Image_Iptc/
  */
 
-/**
- * Dependencies
- */
-require 'Exception.php';
+namespace Iptc;
 
 /**
  * Class to manipulate EXIF and image IPTC
@@ -92,7 +89,7 @@ class Iptc
      *
      * @param string $filename - Name of file
      *
-     * @throw Iptc_Exception
+     * @throw IptcException
      * @see http://www.php.net/manual/pt_BR/book.image.php - PHP GD
      * @see iptcparse
      * @see getimagesize
@@ -105,26 +102,26 @@ class Iptc
          * @since 2.0.1
          */
         if (version_compare(phpversion(), '5.1.3', '<') === true) {
-            throw new Iptc_Exception(
+            throw new IptcException(
                 'ERROR: Your PHP version is '.phpversion() .
                     '. Iptc class requires PHP 5.1.3 or newer.'
             );
         }
 
         if ( ! extension_loaded('gd') ) {
-            throw new Iptc_Exception(
+            throw new IptcException(
                 'Since PHP 4.3 there is a bundled version of the GD lib.'
             );
         }
 
         if ( ! file_exists($filename) ) {
-            throw new Iptc_Exception(
+            throw new IptcException(
                 'Image not found!'
             );
         }
 
         if ( ! is_writable($filename) ) {
-            throw new Iptc_Exception(
+            throw new IptcException(
                 "File \"{$filename}\" is not writable!"
             );
         }
@@ -132,7 +129,7 @@ class Iptc
         $parts = explode('.', strtolower($filename));
 
         if ( ! in_array(end($parts), $this->_allowedExt) ) {
-            throw new Iptc_Exception(
+            throw new IptcException(
                 'Support only for the following extensions: ' .
                     implode(',', $this->_allowedExt)
             );
@@ -313,7 +310,7 @@ class Iptc
         //@see http://php.net/manual/pt_BR/function.iptcembed.php
         $content = iptcembed($this->binary(), $this->_filename, 0);
         if ($content === false) {
-            throw new Iptc_Exception(
+            throw new IptcException(
                 'Failed to save IPTC data into file'
             );
         }
