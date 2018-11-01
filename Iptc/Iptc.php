@@ -12,7 +12,7 @@
 /**
  * Dependencies
  */
-require 'Iptc/Exception.php';
+require 'Exception.php';
 
 /**
  * Class to manipulate EXIF and image IPTC
