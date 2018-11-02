@@ -11,6 +11,9 @@
 
 namespace Iptc;
 
+use RecursiveIteratorIterator;
+use RecursiveArrayIterator;
+
 /**
  * Class to manipulate EXIF and image IPTC
  *
