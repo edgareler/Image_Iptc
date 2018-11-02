@@ -1,0 +1,8 @@
+{
+    "name": "agutoli/image-iptc",
+    "autoload": {
+        "psr-0" : {
+            "Iptc" : "."
+        }
+    }
+}
